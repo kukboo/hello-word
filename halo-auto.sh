@@ -9,10 +9,12 @@ echo '添加halo用户到/home'
 cd /home
 useradd -m halo
 echo '安装halo-jar文件并重命名'
-if [ -e halo-latest.jar ];then
+if [ -e halo/halo-latest.jar ];then
 echo 'halo-jar文件已存在'
 else
-wget https://dl.halo.run/release/halo-1.3.2.jar -O home/halo-latest.jar
+cd /home
+echo '备用jar下载网址https://halo.cary.tech/release/halo-1.3.2.jar'
+wget https://halo.cary.tech/release/halo-1.3.2.jar -O halo/halo-latest.jar
 fi
 echo '下载配置文件到 ~/.halo 目录'
 curl -o ~/.halo/application.yaml --create-dirs https://dl.halo.run/config/application-template.yaml
@@ -26,4 +28,6 @@ echo '使 Halo 开机自启'
 systemctl enable halo
 echo '启动 Halo'
 service halo start
+echo '查看 Halo 状态'
+service halo status
 echo '----END----'
