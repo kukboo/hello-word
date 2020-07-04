@@ -13,7 +13,7 @@ if [ -e halo/halo-latest.jar ];then
 echo 'halo-jar文件已存在'
 else
 cd /home
-echo '备用jar下载网址https://halo.cary.tech/release/halo-1.3.2.jar'
+echo '备用jar下载网址https://dl.halo.run/release/halo-1.3.2.jar'
 wget https://halo.cary.tech/release/halo-1.3.2.jar -O halo/halo-latest.jar
 fi
 echo '下载配置文件到 ~/.halo 目录'
