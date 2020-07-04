@@ -14,7 +14,7 @@ su halo
 echo '下载配置文件到 ~/.halo 目录'
 curl -o ~/.halo/application.yaml --create-dirs https://dl.halo.run/config/application-template.yaml
 echo '退出halo用户'
-exit
+sudo root
 echo '下载 Halo 官方的 halo.service 模板'
 curl -o /etc/systemd/system/halo.service --create-dirs https://dl.halo.run/config/halo.service
 echo '修改 /etc/systemd/system/halo.service'
