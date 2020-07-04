@@ -2,12 +2,12 @@
 # author:yituge.cn
 echo 'CentOS部署halo博客系统一键脚本'
 echo '更新yum'
-sudo yum update -y
+yum update -y
 echo '安装最新版无头openjdk'
-sudo yum install java-latest-openjdk-headless -y
+yum install java-latest-openjdk-headless -y
 echo '添加halo用户到/home'
-sudo cd /home
-sudo useradd -m halo
+cd /home
+useradd -m halo
 su halo <<!
 echo '安装halo-jar文件并重命名'
 if [ -e halo/halo-latest.jar ];then
@@ -22,13 +22,13 @@ curl -o ~/.halo/application.yaml --create-dirs https://dl.halo.run/config/applic
 exit
 !
 echo '下载 Halo 官方的 halo.service 模板'
-sudo curl -o /etc/systemd/system/halo.service --create-dirs https://dl.halo.run/config/halo.service
+curl -o /etc/systemd/system/halo.service --create-dirs https://dl.halo.run/config/halo.service
 echo '修改 /etc/systemd/system/halo.service'
-sudo sed -i "s/JAR_PATH/\/home\/halo\/halo-latest.jar/g" /etc/systemd/system/halo.service
+sed -i "s/JAR_PATH/\/home\/halo\/halo-latest.jar/g" /etc/systemd/system/halo.service
 echo '刷新 Systemd'
-sudo systemctl daemon-reload
+systemctl daemon-reload
 echo '使 Halo 开机自启'
-sudo systemctl enable halo
+systemctl enable halo
 echo '启动 Halo'
 su halo -c "service halo start"
 echo '查看 Halo 状态'
