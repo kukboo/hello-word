@@ -8,18 +8,14 @@ yum install java-latest-openjdk-headless -y
 echo '添加halo用户到/home'
 cd /home
 useradd -m halo
-echo '登录halo用户'
-su halo
 echo '安装halo-jar文件并重命名'
-if [ -e /halo-latest.jar ];then
+if [ -e halo-latest.jar ];then
 echo 'halo-jar文件已存在'
 else
-wget https://dl.halo.run/release/halo-1.3.2.jar -O halo-latest.jar
+wget https://dl.halo.run/release/halo-1.3.2.jar -O home/halo-latest.jar
 fi
 echo '下载配置文件到 ~/.halo 目录'
 curl -o ~/.halo/application.yaml --create-dirs https://dl.halo.run/config/application-template.yaml
-echo '退出halo用户'
-sudo root
 echo '下载 Halo 官方的 halo.service 模板'
 curl -o /etc/systemd/system/halo.service --create-dirs https://dl.halo.run/config/halo.service
 echo '修改 /etc/systemd/system/halo.service'
